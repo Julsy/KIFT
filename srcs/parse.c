@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iiliuk <iiliuk@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/15 16:42:02 by iiliuk            #+#    #+#             */
+/*   Updated: 2017/06/15 17:21:07 by iiliuk           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "kift.h"
 
 static int		confirm_match(int i, char *str, char *command)
@@ -17,7 +29,11 @@ static int		confirm_match(int i, char *str, char *command)
 	(strcmp(command, "google")) ? 0 : google(str + i + j  + 1);
 	(strcmp(command, "send email")) ? 0 : mail(str + i + j  + 1);
 	(strcmp(command, "brightness")) ? 0 : brightness(str);
+	(strcmp(command, "volume")) ? 0 : volume(str);
 	(strcmp(command, "where am i")) ? 0 : whereami();
+	(strcmp(command, "who am i")) ? 0 : whoami();
+	(strcmp(command, "sublime")) ? 0 : sublime();
+	(strcmp(command, "terminal")) ? 0 : terminal();
 	//(strcmp(command, "define")) ? 0 : define(str + i + j + 1);
 	return (1);
 }
@@ -37,18 +53,18 @@ static int		find_shortest(char **commands)
 	return (shortest);
 }
 
-static void	parse_instructs(char *str, char **commands)
+static int parse_instructs(char *str, char **commands)
 {
 	int len = strlen(str);
 	int shortest = find_shortest(commands);
-	int hash_vals[8] = {0};
+	int hash_vals[12] = {0};
 	int i, j;
 	int t = 0;
 	int h = 1;
 
 	for (i = 0; i < shortest - 1; i++)
 		h = (h * 256) % 101;
-	for (i = 0; i < 8; i++)
+	for (i = 0; i < 12; i++)
 	{
 		for (int j = 0; j < shortest; j++)
 			hash_vals[i] = (256 * hash_vals[i] + commands[i][j]) % 101;
@@ -56,11 +72,11 @@ static void	parse_instructs(char *str, char **commands)
 	for (i = 0; i < shortest; i++)
 		t = (256 * t + str[i]) % 101;
 	for (i = 0; i <= len - shortest; i++)
-	{	
-		for (j = 0; j < 8; j++)
+	{
+		for (j = 0; j < 12; j++)
 		{
 			if (hash_vals[j] == t && confirm_match(i, str, commands[j]))
-				return ;
+				return (1);
 		}
 		if (i < len - shortest)
 		{
@@ -69,6 +85,7 @@ static void	parse_instructs(char *str, char **commands)
 				t = (t + 101);
 		}
 	}
+	return (0);
 }
 
 int		parse_init(char *str)
@@ -76,17 +93,26 @@ int		parse_init(char *str)
 	printf("PARSING COMMAND %s\n", str);
 	char **commands;
 
-	commands = (char**)malloc(sizeof(char*) * 9);
-	commands[0] = strdup("play");
-	commands[1] = strdup("set alarm");
-	commands[2] = strdup("set timer");
-	commands[3] = strdup("google");
-	commands[4] = strdup("brightness");
-	commands[5] = strdup("send email");
-	commands[6] = strdup("where am i");
-	commands[7] = strdup("define");
-	commands[8] = NULL;
-	parse_instructs(str, commands);
-	free_2d(commands);
+	commands = (char**)malloc(sizeof(char*) * 12);
+	commands[0] = "play";
+	commands[1] = "set alarm";
+	commands[2] = "set timer";
+	commands[3] = "google";
+	commands[4] = "brightness";
+	commands[5] = "send email";
+	commands[6] = "where am i";
+	commands[7] = "define";
+	commands[8] = "volume";
+	commands[9] = "sublime";
+	commands[10] = "terminal";
+	commands[11] = "who am i";
+	commands[12] = NULL;
+	if (!parse_instructs(str, commands))
+	{
+		printf("Sorry, I didn't understand the command\n");
+		setflite("Sorry, I didn't understand the command", 0);
+	}
+	//free_2d(commands);
+	free(commands);
 	return (0);
 }

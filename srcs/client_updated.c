@@ -154,21 +154,27 @@ int		main(int argc, char **argv)
 	buf = (char*)malloc(sizeof(char) * 1024);
 	config = cmd_ln_init(NULL, ps_args(), TRUE,
 						/* default model */
-						// "-hmm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/en-us-adapt",
+						"-hmm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/en-us-adapt",
 						// "-lm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/en-us.lm.bin",
 						// "-dict", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/cmudict-en-us.dict",
 						// "-mllr", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/learning_commands/mllr_matrix",
 
 						/* short commands adapt model */
-						"-hmm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/short_commands/en-us-short-adapt",
-						"-lm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/short_commands/en-us.lm.bin",
-						"-dict", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/short_commands/cmudict-en-us.dict",
+						//"-hmm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/short_commands/en-us-short-adapt",
+						// "-lm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/short_commands/en-us.lm.bin",
+						// "-dict", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/short_commands/cmudict-en-us.dict",
+						//"-mllr", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/short_commands/mllr_matrix",
+
+						/* ONLY commands adapt model */
+						//"-hmm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/short_commands/en-us-short-adapt",
+						"-lm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/only_commands/9592.lm",
+						"-dict", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/only_commands/9592.dic",
 						"-mllr", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/srcs/short_commands/mllr_matrix",
 						
 						/* lm with commands only */
-						// "-lm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sphinx/share/simple_commands/8039.lm",
-						// "-dict", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sphinx/share/simple_commands/8039.dic",
-						// "-logfn", "log.txt",
+						//"-lm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sphinx/share/simple_commands/8039.lm",
+						//"-dict", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sphinx/share/simple_commands/8039.dic",
+						"-logfn", "log.txt",
 						"-keyphrase", "benjamin",
 						"-kws_threshold", "1e-20",
 						NULL);

@@ -1,27 +1,16 @@
-# include "kift.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helper.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iiliuk <iiliuk@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/15 17:27:54 by iiliuk            #+#    #+#             */
+/*   Updated: 2017/06/15 17:29:55 by iiliuk           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	ft_word_count(const char *s, char c)
-{
-	int flag;
-	int word;
-
-	flag = 0;
-	word = 0;
-	if (!s || !c)
-		return (0);
-	while (*s)
-	{
-		if (*s == c && flag == 1)
-			flag = 0;
-		if (*s != c && flag == 0)
-		{
-			flag = 1;
-			word++;
-		}
-		s++;
-	}
-	return (word);
-}
+#include "kift.h"
 
 static int	ft_wlen(const char *s, char c)
 {
@@ -89,6 +78,29 @@ char		**ft_strsplit(char const *s, char c)
 	return (array);
 }
 
+int	ft_word_count(const char *s, char c)
+{
+	int flag;
+	int word;
+
+	flag = 0;
+	word = 0;
+	if (!s || !c)
+		return (0);
+	while (*s)
+	{
+		if (*s == c && flag == 1)
+			flag = 0;
+		if (*s != c && flag == 0)
+		{
+			flag = 1;
+			word++;
+		}
+		s++;
+	}
+	return (word);
+}
+
 char	*str_to_lower(char *str)
 {
 	int i = 0;
@@ -100,19 +112,4 @@ char	*str_to_lower(char *str)
 	}
 	lowercase[i] = '\0';
 	return (lowercase);
-}
-
-void    free_2d(char **lines)
-{
-    int i;
-
-    i = 0;
-    while (lines[i])
-    {
-        bzero(lines[i], strlen(lines[i]));
-        free(lines[i]);
-        i++;
-    }
-    free(lines);
-    lines = NULL;
 }

@@ -1,0 +1,49 @@
+benjamin
+one
+two
+three
+four
+five
+six
+seven
+eight
+nine
+ten
+eleven
+twelve
+thirteen
+fourteen
+fifteen
+sixteen
+seventeen
+eighteen
+twenty
+thirty
+forty
+fifty
+sixty
+seventy
+eighty
+ninety
+hundred
+thousand
+hour
+minute
+set alarm
+set timer
+volume up
+volume down
+where am i
+brightness up
+brightness down
+google
+define
+play music
+play dance
+play rap
+play pop
+play rock
+play jazz
+sublime
+terminal
+open

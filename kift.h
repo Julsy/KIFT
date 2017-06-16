@@ -7,17 +7,23 @@
 # include <string.h>
 # include <stddef.h>
 # include <stdint.h>
-#include <stdio.h>
-#include <assert.h>
-#include <fcntl.h>
-#include <time.h>
-#include <sys/wait.h>
+# include <stdio.h>
+# include <assert.h>
+# include <fcntl.h>
+# include <time.h>
+# include <ctype.h>
+# include <sys/wait.h>
+
+# define SAM 0
 
 /* Sphinx libs */
-#include <sys/select.h>
-#include <sphinxbase/err.h>
-#include <sphinxbase/ad.h>
-#include <pocketsphinx.h>
+# include <sys/select.h>
+# include <sphinxbase/err.h>
+# include <sphinxbase/ad.h>
+# include <pocketsphinx.h>
+
+/* Server lib */
+//# include "server.h"
 
 typedef struct	s_time 
 {
@@ -37,6 +43,7 @@ void	mail(char *str);
 void	whereami(void);
 
 void    free_2d(char **lines);
+char	*str_to_lower(char *str);
 char	**ft_strsplit(char const *s, char c);
 int		ft_word_count(const char *s, char c);
 
@@ -44,3 +51,8 @@ void	setsam(char *str, int sec);
 void	setreply(char *str, int sec);
 
 #endif
+
+// consistency with responses + print on screen
+// add joke
+// fix syntax error: sh: -c: line 1: syntax error near unexpected token `&'
+//					 sh: -c: line 1: ` &'

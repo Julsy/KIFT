@@ -92,10 +92,12 @@ static void	recognize_from_microphone(ps_decoder_t *ps, cmd_ln_t *config)
 				// }
 				// if (key_detected && strcmp(hyp, "benjamin") && strlen(hyp) > 0) {
 				// 	key_detected = FALSE;
-				{	printf("%s\n", hyp);
-					printf("---------parsing---------\n");
+				{	//printf("%s\n", hyp);
 					if (strlen(hyp) > 0)
-						parse_init(str_to_lower((char *)hyp));
+					{
+						//printf("---------parsing---------\n");
+						parse_sweet(str_to_lower((char *)hyp));
+					}
 					fflush(stdout);
 					/*
 					write_wav("test.wav", k, adbuf);
@@ -120,11 +122,17 @@ int			main(void)
 	ps_decoder_t	*ps;
 
 	config = cmd_ln_init(NULL, ps_args(), TRUE,
-			"-hmm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sphinx/share/en-us-adapt",
-			"-lm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sphinx/share/short_lm/9696.lm",
-			"-dict", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sphinx/share/short_lm/9696.dic",
-			"-mllr", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sphinx/share/mllr_matrix",
-			// "-logfn", "log.txt",
+		/* sweet treat */
+			"-hmm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sphinx/share/en-us",
+			"-lm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sweet_treat/3391.lm",
+			"-dict", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sweet_treat/3391.dic",
+			//"-mllr", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sphinx/share/mllr_matrix",
+			
+			// "-hmm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sphinx/share/en-us-adapt",
+			// "-lm", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sphinx/share/short_lm/9696.lm",
+			// "-dict", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sphinx/share/short_lm/9696.dic",
+			// "-mllr", "/nfs/2016/i/iiliuk/Midshipman/KIFT/my_KIFT/sphinx/share/mllr_matrix",
+			"-logfn", "log.txt",
 			// "-keyphrase", "benjamin",
 			// "-kws_threshold", "1e-20",
 			NULL);
